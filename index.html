@@ -1,1 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BASD Cloud Performance Portal | A’Sharqiyah University</title>
+<meta name="description" content="Basic and Applied Sciences Department website, KPI, faculty performance and HoD evidence management portal">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+ <div class="brand"><img src="basd-logo.svg" alt="ABS Department logo"><div><h1>Basic and Applied Sciences Department</h1><p>College of Applied and Health Sciences • Department & Performance Portal</p></div></div>
+ <div class="top-actions"><span class="pill" id="cloudStatus"><span class="dot"></span> Cloud setup</span><button class="btn btn-soft" onclick="go('faculty-kpis')">Faculty KPI Entry</button><button class="btn btn-primary hod-only" onclick="go('hod')">HoD Performance</button><button class="btn btn-outline btn-sm" id="signOutBtn" style="display:none" onclick="BASDCloud.signOut()">Sign out</button></div>
+</header>
+<div class="mobile-nav" id="mobileNav"></div>
+<div class="shell">
+<aside class="sidebar">
+ <div class="nav-group">Department</div>
+ <div class="nav active" data-page="home"><span class="ico">⌂</span>Department Home</div>
+ <div class="nav-group">Performance</div>
+ <div class="nav" data-page="dashboard"><span class="ico">▦</span>Executive Dashboard</div>
+ <div class="nav" data-page="faculty"><span class="ico">◎</span>Faculty Performance</div>
+ <div class="nav" data-page="faculty-kpis"><span class="ico">✓</span>Faculty KPI Entry</div>
+ <div class="nav" data-page="hod"><span class="ico">★</span>HoD Performance</div>
+ <div class="nav-group">Evidence & Control</div>
+ <div class="nav" data-page="hod-data"><span class="ico">Σ</span>HoD Data Pack</div>
+ <div class="nav" data-page="reference"><span class="ico">≡</span>KPI Reference</div>
+ <div class="nav" data-page="reports"><span class="ico">⇩</span>Reports & Export</div>
+ <div class="nav" data-page="settings"><span class="ico">⚙</span>Faculty & Settings</div>
+ <div class="side-note"><strong style="color:var(--navy)">Official KPI basis</strong><br>Templates are built from the supplied ASU KPI cards for Lecturer, Assistant Professor, Associate Professor, Professor and HoD (AY 2025/2026).</div>
+</aside>
+<main>
 
+<section class="page active" id="home">
+ <div class="dept-banner">
+  <div class="dept-ident">
+   <img src="basd-logo.svg" alt="Basic and Applied Sciences Department logo">
+   <div><div class="college">College of Applied and Health Sciences</div><h2>Basic and Applied Sciences Department</h2><p>A’Sharqiyah University • Ibra, Sultanate of Oman</p></div>
+  </div>
+  <div class="hod-card"><div class="hod-avatar">MB</div><div><small>Head of the Department</small><strong>Dr. Mohammed Al Bahri</strong><span>Associate Professor</span></div></div>
+ </div>
+ <div class="dept-statbar">
+  <div class="dept-stat"><strong id="homeFaculty">0</strong><span>Active Faculty</span></div>
+  <div class="dept-stat"><strong id="homeCompletion">0%</strong><span>Avg KPI Completion</span></div>
+  <div class="dept-stat"><strong id="homePubs">0</strong><span>Journal Publication Value</span></div>
+  <div class="dept-stat"><strong id="homeHodReady">0%</strong><span>HoD Evidence Ready</span></div>
+ </div>
+ <div class="public-layout">
+  <aside class="public-menu">
+   <h4>Basic & Applied Sciences</h4>
+   <a href="#about-dept">Overview</a><a href="#about-dept">About</a><a onclick="go('faculty')">Faculty & Staff</a><a href="#programmes">Research & Programmes</a><a onclick="go('dashboard')">Performance Dashboard</a><a onclick="go('reports')">Reports</a>
+   <div class="contact"><strong>CONTACT</strong><br>College of Applied and Health Sciences<br>A’Sharqiyah University<br>info@asu.edu.om</div>
+  </aside>
+  <div class="public-copy">
+   <div id="about-dept"><h2>About the Department</h2>
+   <p>The Basic and Applied Sciences Department is one of the academic departments within the College of Applied and Health Sciences at A’Sharqiyah University. The department contributes to high-quality education in the basic and applied sciences, supports interdisciplinary teaching across programmes, and promotes applied research, innovation, and community engagement.</p>
+   <p id="programmes">The department currently hosts academic programmes in Industrial Chemistry and Mathematics and contributes foundational scientific expertise across the University. Current programmes listed by ASU include:</p>
+   <ul class="program-list"><li>Diploma in Industrial Chemistry</li><li>Bachelor of Science in Industrial Chemistry</li><li>Bachelor of Sciences in Mathematics</li></ul>
+   <p>Through its teaching, research and service activities, the department aims to strengthen scientific thinking, quantitative reasoning, problem solving, innovation, and the application of knowledge to challenges relevant to Oman and the wider region.</p></div>
+   <h3>Vision</h3>
+   <p>To be a leading department in basic and applied sciences in the region, recognized for excellence in education, research, and innovation.</p>
+   <h3>Mission</h3>
+   <p>To deliver high-quality, future-focused education and applied research in the basic and applied sciences; foster innovation and collaboration; and engage with community and industry to support sustainable development and contribute to national and global progress.</p>
+   <div class="align-note"><strong>Alignment:</strong> The departmental vision and mission above are adapted from A’Sharqiyah University’s current Vision and Mission so that BASD priorities remain directly aligned with the University’s direction.</div>
+
+   <div class="portal-title"><div><h3>HoD Management Portal</h3><p>Eight main gateways for department monitoring, evidence, appraisal and annual reporting.</p></div></div>
+   <div class="icon-grid">
+    <div class="portal-card" onclick="go('dashboard')"><div class="portal-icon">▦</div><h4>HoD Dashboard</h4><p>Department-level performance, appraisal completion and priority indicators.</p><span class="portal-arrow">→</span></div>
+    <div class="portal-card" onclick="go('faculty')"><div class="portal-icon">👥</div><h4>Faculty Performance</h4><p>Compare each faculty member’s overall score, completion and performance status.</p><span class="portal-arrow">→</span></div>
+    <div class="portal-card" onclick="go('faculty-kpis')"><div class="portal-icon">✓</div><h4>Faculty KPI Entry</h4><p>Enter and update role-specific KPI actual values, evidence and scores.</p><span class="portal-arrow">→</span></div>
+    <div class="portal-card" onclick="go('hod')"><div class="portal-icon">★</div><h4>My HoD KPIs</h4><p>Track all 17 HoD KPIs, evidence readiness, actual values and final ratings.</p><span class="portal-arrow">→</span></div>
+    <div class="portal-card" onclick="go('hod-data')"><div class="portal-icon">Σ</div><h4>HoD Data Pack</h4><p>Automatically collect faculty data that supports your HoD performance evidence.</p><span class="portal-arrow">→</span></div>
+    <div class="portal-card" onclick="go('reference')"><div class="portal-icon">≡</div><h4>KPI Reference</h4><p>View official KPI cards and thresholds for all academic ranks and HoD.</p><span class="portal-arrow">→</span></div>
+    <div class="portal-card" onclick="go('reports')"><div class="portal-icon">⇩</div><h4>Reports & Export</h4><p>Generate year-end faculty, department and HoD performance data.</p><span class="portal-arrow">→</span></div>
+    <div class="portal-card" onclick="go('settings')"><div class="portal-icon">⚙</div><h4>Faculty & Settings</h4><p>Maintain faculty ranks, specializations, academic year and portal settings.</p><span class="portal-arrow">→</span></div>
+   </div>
+   <div class="source-line">Programme information reflects the current A’Sharqiyah University College of Applied and Health Sciences pages. Department Vision and Mission are aligned to ASU’s current institutional Vision and Mission.</div>
+  </div>
+ </div>
+</section>
+
+<section class="page" id="dashboard">
+ <div class="hero">
+  <div><div class="eyebrow" style="color:#a7d6ea">ABS Performance Management</div><h2>Faculty performance in one view — with the evidence you need for your HoD KPIs.</h2><p>Track each faculty member against the correct ASU KPI card, monitor completion and performance, and automatically roll key department indicators into your HoD evidence dashboard.</p><div class="hero-actions"><button class="btn btn-primary" style="background:#fff;color:var(--navy)" onclick="go('faculty-kpis')">Update faculty KPIs</button><button class="btn btn-outline" onclick="go('hod')">Review HoD KPIs</button></div></div>
+  <div class="hero-logo"><img src="basd-logo.svg" alt="ABS Department logo"></div>
+ </div>
+ <div class="section-title"><div><h3>Department at a glance</h3><p>Calculated from active faculty records and HoD KPI entries.</p></div></div>
+ <div class="grid g4">
+  <div class="card stat"><span class="stat-icon">◎</span><div class="lab">Active faculty</div><div class="val" id="dashFaculty">0</div><div class="note">Lecturer / Assistant Professor / Associate Professor / Professor</div></div>
+  <div class="card stat"><span class="stat-icon">✓</span><div class="lab">Completed appraisals</div><div class="val" id="dashAppraisal">0%</div><div class="note">Feeds HoD KPI 8</div></div>
+  <div class="card stat"><span class="stat-icon">◇</span><div class="lab">Faculty average score</div><div class="val" id="dashFacultyScore">—</div><div class="note" id="dashFacultyRating">No scored records yet</div></div>
+  <div class="card stat"><span class="stat-icon">★</span><div class="lab">HoD KPI score</div><div class="val" id="dashHodScore">—</div><div class="note" id="dashHodRating">Enter HoD ratings</div></div>
+ </div>
+ <div class="grid g2" style="margin-top:16px">
+  <div class="card"><div class="kpi-head"><h3>Faculty performance distribution</h3><span class="badge b-blue" id="distLabel">0 scored</span></div><div id="distribution"></div></div>
+  <div class="card"><div class="kpi-head"><h3>HoD evidence readiness</h3><span class="badge b-gold" id="hodReadyBadge">0%</span></div><div class="progress"><span id="hodReadyBar" style="width:0%"></span></div><div class="subtle" id="hodReadyText" style="margin-top:10px">Complete or derive the 17 HoD KPI actual values.</div><div class="section-title" style="margin-top:16px"><div><h3 style="font-size:14px">Auto-derived evidence</h3></div></div><div id="autoEvidence"></div></div>
+ </div>
+ <div class="section-title"><div><h3>Faculty performance overview</h3><p>Overall score, KPI completion and areas requiring attention.</p></div><button class="btn btn-soft no-print" onclick="go('faculty')">Open faculty view</button></div>
+ <div class="table-wrap"><table><thead><tr><th>Faculty</th><th>Role</th><th>Review</th><th>Completion</th><th>Overall</th><th>Rating</th><th>Teaching</th><th>Research</th><th>Action</th></tr></thead><tbody id="dashFacultyBody"></tbody></table></div>
+</section>
+
+<section class="page" id="faculty">
+ <div class="page-head"><div><div class="eyebrow">Individual performance</div><h2>Faculty Performance</h2><p>Follow every faculty member’s KPI completion, overall score, category averages and review status.</p></div><button class="btn btn-blue no-print" onclick="openFacultyDialog()">+ Add Faculty</button></div>
+ <div class="grid g4"><div class="card stat"><div class="lab">Active faculty</div><div class="val" id="fCount">0</div></div><div class="card stat"><div class="lab">Reviews completed</div><div class="val" id="fCompleted">0</div></div><div class="card stat"><div class="lab">Below expectations</div><div class="val" id="fAttention">0</div><div class="note">Overall score below 2.5</div></div><div class="card stat"><div class="lab">High performers</div><div class="val" id="fHigh">0</div><div class="note">Overall score ≥ 4.5</div></div></div>
+ <div class="section-title"><div><h3>Faculty ranking & progress</h3><p>Ranking appears only for faculty with at least one KPI score.</p></div></div><div class="card" id="facultyRanking"></div>
+ <div class="section-title"><div><h3>Detailed performance matrix</h3></div></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Employee ID</th><th>Role</th><th>Specialization</th><th>Review status</th><th>KPI completion</th><th>Overall score</th><th>Overall rating</th><th>Manage</th></tr></thead><tbody id="facultyBody"></tbody></table></div>
+</section>
+
+<section class="page" id="faculty-kpis">
+ <div class="page-head"><div><div class="eyebrow">Official role card</div><h2>Faculty KPI Entry</h2><p>Select a faculty member. The portal loads the correct KPI thresholds from the supplied ASU card for that academic rank.</p></div></div>
+ <div class="card" style="margin-bottom:16px"><div class="form-grid"><div class="field"><label>Faculty member</label><select id="facultySelect" onchange="renderFacultyKpis()"></select></div><div class="field"><label>Review status</label><select id="reviewStatus" onchange="setReviewStatus(this.value)"><option>Not Started</option><option>In Progress</option><option>Submitted</option><option>Returned</option><option>Completed</option></select></div><div class="field full faculty-only-cloud" id="facultySubmitWrap" style="display:none"><button class="btn btn-primary" type="button" onclick="BASDCloud.submitMyReview()">Submit my KPI update to HoD</button><div class="help">You can continue saving KPI evidence during the year. The HoD controls the final score and completion status.</div></div></div></div>
+ <div id="facultyKpiArea"></div>
+</section>
+
+<section class="page" id="hod">
+ <div class="page-head"><div><div class="eyebrow">Your performance evidence</div><h2>HoD KPI Performance</h2><p>The 17 HoD KPIs are taken from the supplied ASU HoD KPI card. Four key indicators are automatically derived from faculty records; the others remain under HoD control.</p></div><div class="no-print" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-soft" onclick="applyHodSuggestions()">Apply suggested scores</button><button class="btn btn-outline" onclick="window.print()">Print report</button></div></div>
+ <div class="grid g4"><div class="card stat"><div class="lab">HoD average score</div><div class="val" id="hodScore">—</div><div class="note" id="hodRating">Not yet rated</div></div><div class="card stat"><div class="lab">KPI evidence readiness</div><div class="val" id="hodReadiness">0%</div><div class="note">Actual value entered or auto-derived</div></div><div class="card stat"><div class="lab">KPIs rated</div><div class="val" id="hodRated">0/17</div></div><div class="card stat"><div class="lab">Auto-derived KPIs</div><div class="val">4</div><div class="note">KPIs 8, 12, 13, 14</div></div></div>
+ <div class="warning" style="margin-top:16px"><strong>Source-card checks:</strong> HoD KPI 12 is measured as “Number” but the uploaded card shows percentage rating thresholds. HoD KPI 11 also contains overlapping percentage bands. The portal preserves the source wording and does not auto-score those two KPIs.</div>
+ <div class="section-title"><div><h3>HoD KPI card</h3><p>Enter actual values/evidence and select the final score. Auto-derived fields are locked.</p></div></div><div id="hodKpiArea"></div>
+</section>
+
+<section class="page" id="hod-data">
+ <div class="page-head"><div><div class="eyebrow">Department evidence</div><h2>HoD Data Pack</h2><p>These department indicators are collected from faculty KPI records so you can quickly retrieve evidence relevant to HoD performance and reporting.</p></div></div>
+ <div class="grid g4"><div class="card stat"><div class="lab">Appraisals completed</div><div class="val" id="packAppraisals">0%</div><div class="note">Direct HoD KPI 8 input</div></div><div class="card stat"><div class="lab">Avg journal publications / staff</div><div class="val" id="packPubs">—</div><div class="note">Direct HoD KPI 12 input</div></div><div class="card stat"><div class="lab">Avg proposals / staff</div><div class="val" id="packProposals">—</div><div class="note">Direct HoD KPI 13 input</div></div><div class="card stat"><div class="lab">Community activities / staff</div><div class="val" id="packCommunity">—</div><div class="note">Direct HoD KPI 14 input</div></div></div>
+ <div class="section-title"><div><h3>Supporting faculty indicators</h3><p>Useful evidence for academic quality, reporting, advising and staff development.</p></div></div><div class="grid g3" id="supportMetrics"></div>
+ <div class="section-title"><div><h3>Evidence source map</h3></div></div><div class="table-wrap"><table><thead><tr><th>HoD KPI</th><th>Department evidence available</th><th>Source</th><th>Current value</th><th>Next action</th></tr></thead><tbody id="evidenceMap"></tbody></table></div>
+</section>
+
+<section class="page" id="reference">
+ <div class="page-head"><div><div class="eyebrow">Official definitions</div><h2>KPI Reference</h2><p>Browse the supplied ASU KPI cards by role, including the exact five-level rating thresholds.</p></div></div>
+ <div class="chip-row" id="roleChips"></div><div id="referenceArea" style="margin-top:14px"></div>
+</section>
+
+<section class="page" id="reports">
+ <div class="page-head"><div><div class="eyebrow">Reporting</div><h2>Reports & Export</h2><p>Export the information you need for faculty reviews, department follow-up and HoD performance evidence.</p></div></div>
+ <div class="grid g3"><div class="card"><h3 style="color:var(--navy);margin-top:0">Faculty summary</h3><p class="subtle">One row per faculty member: role, completion, overall score, rating, category averages and review status.</p><button class="btn btn-blue" onclick="exportFacultySummary()">Download CSV</button></div><div class="card"><h3 style="color:var(--navy);margin-top:0">Full faculty KPI detail</h3><p class="subtle">All role-specific KPIs with actual values, scores, evidence links and notes.</p><button class="btn btn-blue" onclick="exportFacultyDetail()">Download CSV</button></div><div class="card"><h3 style="color:var(--navy);margin-top:0">HoD KPI report</h3><p class="subtle">17 HoD KPIs with actual values, source, suggested score, final score and evidence.</p><button class="btn btn-blue" onclick="exportHodReport()">Download CSV</button></div><div class="card"><h3 style="color:var(--navy);margin-top:0">Full backup</h3><p class="subtle">Save all faculty, scores, HoD records and settings to a JSON backup file.</p><button class="btn btn-outline" onclick="exportBackup()">Download JSON</button></div><div class="card"><h3 style="color:var(--navy);margin-top:0">Restore backup</h3><p class="subtle">Restore a previously exported JSON file on this browser.</p><input type="file" id="backupFile" accept="application/json" onchange="importBackup(this.files[0])"></div><div class="card"><h3 style="color:var(--navy);margin-top:0">Print current page</h3><p class="subtle">Use browser print/PDF for a quick management report.</p><button class="btn btn-outline" onclick="window.print()">Print / Save PDF</button></div></div>
+ </section>
+
+<section class="page" id="settings">
+ <div class="page-head"><div><div class="eyebrow">Master data</div><h2>Faculty & Settings</h2><p>Maintain the faculty roster and basic reporting settings. Faculty roles are limited to the KPI cards you supplied.</p></div><button class="btn btn-blue" onclick="openFacultyDialog()">+ Add Faculty</button></div>
+ <div class="grid g2"><div class="card"><h3 style="margin-top:0;color:var(--navy)">Department settings</h3><div class="form-grid"><div class="field full"><label>Department</label><input id="settingDept" onchange="updateSetting('department',this.value)"></div><div class="field"><label>Academic year</label><input id="settingYear" onchange="updateSetting('academicYear',this.value)"></div><div class="field"><label>HoD name</label><input id="settingHod" onchange="updateSetting('hodName',this.value)"></div></div></div><div class="warning"><strong>Role coverage:</strong> The portal now includes the official KPI cards for Lecturer, Assistant Professor, Associate Professor, Professor and HoD.</div></div>
+ <div class="section-title"><div><h3>Faculty roster</h3></div><div class="no-print"><button class="btn btn-soft btn-sm" onclick="loadDemoData()">Load demo data</button> <button class="btn btn-danger btn-sm" onclick="clearAllData()">Clear all data</button></div></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Employee ID</th><th>Role</th><th>Specialization</th><th>Status</th><th>Review</th><th>Action</th></tr></thead><tbody id="settingsFacultyBody"></tbody></table></div>
+</section>
+<div class="footer">BASD Cloud Performance Portal V5.5 • GitHub editor build • Central faculty data through Supabase with row-level security • KPI definitions sourced from the five ASU KPI workbooks supplied for AY 2025/2026</div>
+</main>
+</div>
+</div>
+
+<div class="dialog-backdrop" id="facultyDialog"><div class="dialog"><div style="display:flex;justify-content:space-between;align-items:center"><h3 id="facultyDialogTitle">Add Faculty</h3><button class="btn btn-soft btn-sm" onclick="closeFacultyDialog()">✕</button></div><form id="facultyForm"><input type="hidden" id="editFacultyId"><div class="form-grid"><div class="field full"><label>Faculty name</label><input id="facultyName" required></div><div class="field"><label>ASU email</label><input id="facultyEmail" type="email" placeholder="name@university-domain" required><div class="help">Use the exact university email the faculty member will use to sign in.</div></div><div class="field"><label>Employee ID</label><input id="facultyEmpId"></div><div class="field"><label>Academic rank / KPI card</label><select id="facultyRole" required><option>Lecturer</option><option>Assistant Professor</option><option>Associate Professor</option><option>Professor</option></select></div><div class="field"><label>Specialization</label><input id="facultySpec" placeholder="Physics, Mathematics, Biology, ..."></div><div class="field"><label>Status</label><select id="facultyActive"><option value="true">Active</option><option value="false">Inactive</option></select></div><div class="field full"><button class="btn btn-primary" type="submit">Save Faculty</button></div></div></form></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* BASD Cloud configuration
+   Connected to the BASD Supabase project.
+   Safe to publish on GitHub Pages: this is the browser-safe publishable key.
+   NEVER place the Supabase service_role key or database password here.
+*/
+window.BASD_CONFIG = {
+  SUPABASE_URL: "https://cntllnxmaqgkwahnhmth.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_uAeHKlFSiC_RsluvMp7_MQ_BJl_Uqkh",
+  // Optional: set the exact ASU email suffix later, e.g. "@asu.edu.om".
+  ALLOWED_EMAIL_DOMAIN: ""
+};
+
+</script>
+<script src="app.js"></script>
+
+<div class="auth-gate" id="authGate">
+  <div class="auth-card">
+    <div class="auth-brand"><img src="basd-logo.svg" alt="BASD logo"><div><div class="eyebrow">Secure department portal</div><h2>BASD Performance Portal</h2></div></div>
+    <div id="authMessage"><p>Sign in to update KPI records. Faculty see only their own performance data; the HoD sees the department dashboard and all faculty records.</p></div>
+    <div class="notice" id="connectedNotice" style="margin-top:12px;display:none"><strong>Cloud database connected.</strong><br>This portal is connected to the BASD Supabase project. Sign in to use the shared database.</div>
+    <button class="btn btn-primary" style="width:100%;margin-top:6px" id="microsoftLoginBtn" onclick="BASDCloud.signInMicrosoft()">Sign in with ASU Microsoft account</button>
+    <div class="auth-sep">or use email magic link</div>
+    <div class="field"><label>University email</label><input type="email" id="loginEmail" placeholder="your university email"></div>
+    <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="BASDCloud.signInMagicLink()">Email me a secure sign-in link</button>
+    <div class="notice" id="setupNotice" style="margin-top:15px;display:none"><strong>Cloud setup is not configured yet.</strong><br>Open <code>config.js</code> after creating the Supabase project and paste the Project URL and anon/public key. You may continue in local demo mode for design testing only.</div>
+    <button class="btn btn-outline" id="demoBtn" style="width:100%;margin-top:10px;display:none" onclick="BASDCloud.continueDemo()">Continue in local demo mode</button>
+    <p class="help" style="margin-top:14px">Do not store real appraisal information in demo/local mode. Production access is protected by database Row Level Security.</p>
+  </div>
+</div>
+<div class="sync-toast" id="syncToast">Saved to cloud</div>
+
+
+<script>
+window.BASDCloud=(function(){
+  let client=null, session=null, profile=null, facultyId=null, demo=false, saveTimer=null, syncing=false;
+  const cfg=window.BASD_CONFIG||{};
+  const configured=()=>Boolean(cfg.SUPABASE_URL&&cfg.SUPABASE_ANON_KEY&&!cfg.SUPABASE_URL.includes('YOUR-PROJECT')&&!cfg.SUPABASE_ANON_KEY.includes('YOUR-ANON'));
+  const isFaculty=()=>profile?.app_role==='faculty';
+  const isHod=()=>profile?.app_role==='hod';
+  const canManage=()=>['hod','coordinator'].includes(profile?.app_role);
+  const currentRole=()=>profile?.app_role||'demo';
+  const toast=(m)=>{const e=document.getElementById('syncToast');if(!e)return;e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)};
+  const status=(text,ok=true)=>{const e=document.getElementById('cloudStatus');if(e)e.innerHTML=`<span class="dot" style="background:${ok?'#39a86b':'#e8a11a'}"></span> ${esc(text)}`};
+  function showGate(show=true){document.getElementById('authGate')?.classList.toggle('hidden',!show)}
+  function roleUI(){
+    const faculty=isFaculty();
+    const blocked=['dashboard','faculty','hod','hod-data','settings'];
+    document.querySelectorAll('.nav[data-page]').forEach(n=>{if(faculty&&blocked.includes(n.dataset.page))n.style.display='none';else n.style.display=''})
+    document.querySelectorAll('.hod-only').forEach(e=>e.style.display=faculty?'none':'');
+    document.querySelectorAll('.faculty-only-cloud').forEach(e=>e.style.display=faculty?'block':'none');
+    const rs=document.getElementById('reviewStatus'); if(rs) rs.disabled=faculty;
+    const addBtns=[...document.querySelectorAll('button')].filter(b=>b.textContent.includes('Add Faculty'));addBtns.forEach(b=>b.style.display=faculty?'none':'');
+    const demoBtns=[...document.querySelectorAll('button')].filter(b=>b.textContent.includes('Load demo')||b.textContent.includes('Clear all'));demoBtns.forEach(b=>b.style.display=configured()?'none':'');
+    if(faculty){go('faculty-kpis')} else {go('home')}
+  }
+  async function init(){
+    if(!configured()){
+      document.getElementById('setupNotice').style.display='block';document.getElementById('demoBtn').style.display='block';document.getElementById('microsoftLoginBtn').disabled=true;status('Setup required',false);showGate(true);return;
+    }
+    client=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY,{auth:{persistSession:true,detectSessionInUrl:true}});
+    const cn=document.getElementById('connectedNotice'); if(cn)cn.style.display='block';
+    status('Cloud connected');
+    client.auth.onAuthStateChange(async(_event,s)=>{session=s;if(s)await afterLogin();else showGate(true)});
+    const {data}=await client.auth.getSession();session=data.session;if(session)await afterLogin();else showGate(true);
+  }
+  async function signInMicrosoft(){
+    if(!client)return;
+    const redirect=location.origin+location.pathname;
+    const {error}=await client.auth.signInWithOAuth({provider:'azure',options:{redirectTo:redirect,scopes:'email'}});
+    if(error)alert('Microsoft sign-in could not start: '+error.message+'\n\nIf Azure has not yet been configured in Supabase, use the email magic-link option.');
+  }
+  async function signInMagicLink(){
+    if(!client)return;const email=document.getElementById('loginEmail').value.trim();if(!email){alert('Enter your university email.');return}
+    if(cfg.ALLOWED_EMAIL_DOMAIN&& !email.toLowerCase().endsWith(cfg.ALLOWED_EMAIL_DOMAIN.toLowerCase())){alert('Please use your approved university email domain.');return}
+    const {error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});if(error)alert(error.message);else alert('A secure sign-in link was sent to '+email+'.');
+  }
+  async function signOut(){if(client)await client.auth.signOut();session=null;profile=null;facultyId=null;location.reload()}
+  function continueDemo(){demo=true;showGate(false);status('Local demo',false);document.getElementById('signOutBtn').style.display='none';renderAll()}
+  async function afterLogin(){
+    try{
+      const uid=session.user.id;
+      await client.rpc('claim_my_faculty_record');
+      const {data:p,error:pe}=await client.from('profiles').select('*').eq('id',uid).single();if(pe)throw pe;profile=p;
+      if(cfg.ALLOWED_EMAIL_DOMAIN&&session.user.email&&!session.user.email.toLowerCase().endsWith(cfg.ALLOWED_EMAIL_DOMAIN.toLowerCase())){await client.auth.signOut();throw new Error('This portal is restricted to the approved university email domain.')}
+      const {data:mine}=await client.from('faculty').select('id').eq('user_id',uid).maybeSingle();facultyId=mine?.id||null;
+      await loadCloudState();showGate(false);document.getElementById('signOutBtn').style.display='inline-block';status(`${profile.full_name||session.user.email} • ${profile.app_role}`);roleUI();renderAll();
+      if(isFaculty()&&!facultyId){alert('Your account is signed in, but no BASD faculty record is linked to this email yet. Ask the HoD to add your exact university email in Faculty & Settings.');}
+    }catch(e){console.error(e);document.getElementById('authMessage').innerHTML=`<div class="danger"><strong>Sign-in setup issue:</strong> ${esc(e.message)}</div>`;showGate(true)}
+  }
+  async function loadCloudState(){
+    syncing=true;
+    const ns=blankState();
+    const {data:set}=await client.from('department_settings').select('*').eq('id',1).maybeSingle();
+    if(set)ns.settings={department:set.department||ns.settings.department,academicYear:set.academic_year||ns.settings.academicYear,hodName:set.hod_name||ns.settings.hodName};
+    const year=ns.settings.academicYear;
+    const {data:fac,error:fe}=await client.from('faculty').select('*').order('name');if(fe)throw fe;
+    ns.faculty=(fac||[]).map(f=>({id:f.id,name:f.name,email:f.email||'',employeeId:f.employee_id||'',role:f.academic_rank,specialization:f.specialization||'',active:f.active!==false}));
+    const {data:ent,error:ee}=await client.from('faculty_kpi_entries').select('*').eq('academic_year',year);if(ee)throw ee;
+    (ent||[]).forEach(r=>{ns.scores[r.faculty_id]??={};ns.scores[r.faculty_id][r.kpi_id]={actual:r.actual??'',score:'',evidence:r.evidence??'',note:r.note??''}});
+    const {data:sco,error:se}=await client.from('faculty_kpi_scores').select('*').eq('academic_year',year);if(se)throw se;
+    (sco||[]).forEach(r=>{ns.scores[r.faculty_id]??={};ns.scores[r.faculty_id][r.kpi_id]??={actual:'',score:'',evidence:'',note:''};ns.scores[r.faculty_id][r.kpi_id].score=r.score==null?'':String(r.score)});
+    const {data:rev,error:re}=await client.from('faculty_reviews').select('*').eq('academic_year',year);if(re)throw re;
+    (rev||[]).forEach(r=>ns.reviews[r.faculty_id]={status:r.status||'Not Started',completedDate:r.completed_at?.slice?.(0,10)||''});
+    if(isHod()){
+      const {data:h,error:he}=await client.from('hod_kpi_entries').select('*').eq('academic_year',year).eq('user_id',session.user.id);if(he)throw he;
+      (h||[]).forEach(r=>ns.hod[r.kpi_id]={actual:r.actual??'',score:r.score==null?'':String(r.score),evidence:r.evidence??'',note:r.note??''});
+    }
+    S=ns;localStorage.setItem(STORE_KEY,JSON.stringify(S));syncing=false;
+  }
+  async function persist(){
+    if(demo||!client||!session||syncing)return;syncing=true;
+    try{
+      const year=S.settings.academicYear;
+      if(canManage()){
+        await client.from('department_settings').upsert({id:1,department:S.settings.department,academic_year:year,hod_name:S.settings.hodName,updated_at:new Date().toISOString()});
+        if(S.faculty.length){const rows=S.faculty.map(f=>({id:f.id,email:(f.email||null),employee_id:f.employeeId||null,name:f.name,academic_rank:f.role,specialization:f.specialization||null,active:f.active!==false,updated_at:new Date().toISOString()}));const {error}=await client.from('faculty').upsert(rows);if(error)throw error}
+      }
+      const allowedFac=isFaculty()?S.faculty.filter(f=>f.id===facultyId):S.faculty;
+      const entries=[],scores=[];
+      allowedFac.forEach(f=>template(f.role).forEach(k=>{const x=S.scores?.[f.id]?.[k.id]||{};entries.push({faculty_id:f.id,academic_year:year,kpi_id:k.id,actual:x.actual||null,evidence:x.evidence||null,note:x.note||null,updated_at:new Date().toISOString()});if(canManage())scores.push({faculty_id:f.id,academic_year:year,kpi_id:k.id,score:num(x.score),updated_at:new Date().toISOString()})}));
+      if(entries.length){const {error}=await client.from('faculty_kpi_entries').upsert(entries);if(error)throw error}
+      if(canManage()&&scores.length){const {error}=await client.from('faculty_kpi_scores').upsert(scores);if(error)throw error}
+      if(canManage()){
+        const reviews=S.faculty.map(f=>({faculty_id:f.id,academic_year:year,status:reviewStatus(f.id),completed_at:reviewStatus(f.id)==='Completed'?(S.reviews?.[f.id]?.completedDate||new Date().toISOString().slice(0,10)):null,updated_at:new Date().toISOString()}));if(reviews.length){const {error}=await client.from('faculty_reviews').upsert(reviews);if(error)throw error}
+      }
+      if(isHod()){
+        const rows=KPI_DATA.templates.HOD.kpis.map(k=>{const x=S.hod?.[k.id]||{};return {user_id:session.user.id,academic_year:year,kpi_id:k.id,actual:x.actual||null,score:num(x.score),evidence:x.evidence||null,note:x.note||null,updated_at:new Date().toISOString()}});const {error}=await client.from('hod_kpi_entries').upsert(rows);if(error)throw error;
+      }
+      toast('Saved to cloud');
+    }catch(e){console.error(e);toast('Cloud save failed');alert('Cloud save failed: '+e.message)}finally{syncing=false}
+  }
+  function scheduleSave(){if(demo||!configured()||!session)return;clearTimeout(saveTimer);saveTimer=setTimeout(persist,650)}
+  async function submitMyReview(){
+    if(!isFaculty()||!facultyId)return;await persist();const {error}=await client.rpc('submit_my_review',{p_academic_year:S.settings.academicYear});if(error){alert(error.message);return}await loadCloudState();renderAll();toast('Submitted to HoD')
+  }
+  async function deleteFaculty(id){if(!client||!canManage())return;const {error}=await client.from('faculty').delete().eq('id',id);if(error)alert('Cloud delete failed: '+error.message)}
+  async function refresh(){if(client&&session){await loadCloudState();renderAll();toast('Cloud data refreshed')}}
+  const originalSave=save;save=function(){originalSave();scheduleSave()};
+  const originalGo=go;go=function(page){if(isFaculty()&&['dashboard','faculty','hod','hod-data','settings'].includes(page)){alert('Faculty accounts can access only their own KPI record and the KPI reference.');return}originalGo(page)};
+  return {init,signInMicrosoft,signInMagicLink,signOut,continueDemo,isFaculty,isHod,canManage,currentRole,submitMyReview,deleteFaculty,refresh,configured};
+})();
+window.addEventListener('load',()=>BASDCloud.init());
+</script>
+
+</body></html>
